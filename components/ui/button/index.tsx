@@ -9,7 +9,13 @@ import {
   useStyleContext,
 } from "@gluestack-ui/nativewind-utils/withStyleContext";
 import { cssInterop } from "nativewind";
-import { ActivityIndicator, Pressable, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  Pressable,
+  Text,
+  View,
+  Platform,
+} from "react-native";
 import type { VariantProps } from "@gluestack-ui/nativewind-utils";
 
 const SCOPE = "BUTTON";
@@ -68,7 +74,8 @@ const PrimitiveIcon = React.forwardRef<
     } else if (stroke === "currentColor" && color !== undefined) {
       colorProps = { ...colorProps, stroke: color };
     }
-
+    console.log("colorProps in button", colorProps);
+    console.log("props in button", props);
     if (AsComp) {
       return <AsComp ref={ref} {...props} {...sizeProps} {...colorProps} />;
     }
@@ -95,6 +102,7 @@ cssInterop(UIButton.Spinner, {
   className: { target: "style", nativeStyleToProp: { color: true } },
 });
 //@ts-ignore
+// if (Platform.OS !== "web") {
 cssInterop(PrimitiveIcon, {
   className: {
     target: "style",
@@ -108,6 +116,7 @@ cssInterop(PrimitiveIcon, {
     },
   },
 });
+// }
 
 const buttonStyle = tva({
   base: "group/button rounded bg-primary-500 flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40",

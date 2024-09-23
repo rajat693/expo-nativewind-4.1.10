@@ -1,24 +1,27 @@
-import { StatusBar } from "expo-status-bar";
+import React from "react";
 import "@/global.css";
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, AlertIcon, AlertText } from "./components/ui/alert";
+import { AddIcon, Icon } from "./components/ui/icon";
+import { SafeAreaView } from "@/components/ui/safe-area-view";
+import { Button, ButtonIcon, ButtonText } from "./components/ui/button";
 
 export default function App() {
   return (
     <GluestackUIProvider mode="light">
-      <View style={styles.container}>
-        <Text>Open up App.tsx to start working on your app!</Text>
-        <StatusBar style="auto" />
-      </View>
+      <SafeAreaView className="flex-1 items-center justify-center">
+        <Alert action="muted" variant="solid">
+          {/* <AlertIcon as={AddIcon} /> */}
+          <AlertText>Description of alert!</AlertText>
+        </Alert>
+
+        <Button>
+          <ButtonText>Hello World!</ButtonText>
+          <ButtonIcon as={AddIcon} />
+        </Button>
+
+        <Icon as={AddIcon} />
+      </SafeAreaView>
     </GluestackUIProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
